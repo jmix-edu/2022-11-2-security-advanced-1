@@ -6,7 +6,6 @@ import io.jmix.core.metamodel.annotation.DependsOnProperties;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import io.jmix.security.authentication.JmixUserDetails;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,6 +30,9 @@ public class User implements JmixUserDetails {
     @Column(name = "ID", nullable = false)
     @JmixGeneratedValue
     private UUID id;
+
+    @Column(name = "TELEPHONE_NUMBER")
+    private String telephoneNumber;
 
     @Column(name = "EXPIRY_DATE")
     private LocalDate expiryDate;
@@ -79,6 +81,14 @@ public class User implements JmixUserDetails {
 
     @Transient
     protected Collection<? extends GrantedAuthority> authorities;
+
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
+    }
 
     public LocalDate getExpiryDate() {
         return expiryDate;
